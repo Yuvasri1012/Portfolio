@@ -1,0 +1,213 @@
+.whatido {
+  padding: 80px 0;
+}
+
+.whatido__container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* Heading */
+.whatido__heading {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg,
+    rgb(168, 85, 247) 10%,
+    rgb(109, 40, 217) 30%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.whatido__heading-accent {
+  background: linear-gradient(90deg,
+    rgb(168, 85, 247) 0%,
+    rgb(109, 40, 217) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.whatido__subtext {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  max-width: 850px;
+  margin: -32px auto 48px;
+  line-height: 1.7;
+}
+
+/* List */
+.whatido__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Item */
+.whatido__item {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 32px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Number */
+.whatido__number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #a855f7;
+  min-width: 40px;
+}
+
+/* Info */
+.whatido__info {
+  flex: 1;
+}
+
+.whatido__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.whatido__desc {
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.whatido__item:hover .whatido__desc {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.whatido__item:hover {
+  background: linear-gradient(
+    135deg,
+    #6d28d9 0%,
+    #7c3aed 40%,
+    #350072 100%
+  );
+  border-color: transparent;
+}
+
+.whatido__item:hover .whatido__number {
+  color: #ffffff;
+}
+
+/* Arrow */
+.whatido__arrow {
+  color: #a855f7;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.whatido__item:hover .whatido__arrow {
+  color: #ffffff;
+  /* transform: rotate(-45deg); */
+}
+
+.whatido__arrow svg {
+  width: 32px;
+  height: 32px;
+}
+
+.whatido__arrow svg path {
+  stroke-width: 2.5;
+}
+
+.whatido__arrow svg {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.1s ease;
+}
+
+.whatido__item:hover .whatido__arrow svg {
+  transform: rotate(-45deg);
+}
+
+
+/* =============================================
+   SCROLL REVEAL ANIMATION
+   ============================================= */
+.whatido__fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.whatido--visible .whatido__fade--0 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.whatido--visible .whatido__fade--1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+.whatido--visible .whatido__fade--2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.45s;
+}
+.whatido--visible .whatido__fade--3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.65s;
+}
+.whatido--visible .whatido__fade--4 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.85s;
+}
+
+/* Divider gradient */
+.whatido__divider {
+  background: linear-gradient(
+    to right,
+    transparent,
+    #6d28d9,
+    #a855f7,
+    #350072,
+    #a855f7,
+    #6d28d9,
+    transparent
+  );
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .whatido__container {
+    padding: 0 20px;
+  }
+
+  .whatido__item {
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .whatido__heading {
+    font-size: 1.8rem;
+  }
+}

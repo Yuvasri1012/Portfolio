@@ -1,0 +1,209 @@
+.about {
+  background-color: #0d1117;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Title */
+.about-title {
+  font-size: clamp(2.5rem, 5vw, 3.9rem);
+  font-weight: 800;
+  margin: 0 0 32px 0;
+  text-align: center;
+  background: linear-gradient(90deg, var(--purple-light) 10%, var(--purple-primary) 40%, rgba(255, 255, 255, 0.9) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tabs */
+.about-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid #7c3aed;
+  background-color: transparent;
+  color: #e6edf3;
+  transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(147, 51, 234, 0.15));
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.45);
+}
+
+/* ── BIOGRAPHY ── */
+.biography-card {
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid #1e2a3a;
+  border-radius: 12px;
+  padding: 40px 48px;
+  box-sizing: border-box;
+  background-color: #0d1117;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 0;
+}
+
+.bio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 0;
+}
+
+.bio-label {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bio-value {
+  font-size: 20px;
+  color: #e6edf3;
+  font-weight: 400;
+}
+
+.bio-divider {
+  height: 1px;
+  background-color: #1e2a3a;
+  margin-top: 14px;
+}
+
+/* ── EDUCATION ── */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.edu-card {
+  background-color: #0d1117;
+  border: 1px solid #1e2a3a;
+  border-radius: 12px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.edu-card:hover {
+  border-color: #7c3aed;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+}
+
+.edu-title {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.edu-institution {
+  font-size: 15px;
+  color: #e6edf3;
+  font-weight: 500;
+  margin: 0;
+}
+
+.edu-year {
+  font-size: 15px;
+  color: #6e7681;
+  margin: 0;
+}
+
+.edu-location {
+  font-size: 15px;
+  color: #6e7681;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .education-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .biography-card {
+    padding: 24px 20px;
+  }
+
+  .bio-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* ── SCROLL REVEAL ANIMATION ── */
+
+/* Initial hidden state — section starts invisible + slightly below */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* When IntersectionObserver adds this class — section fades + slides up */
+.reveal-section.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children (bio-items & edu-cards) */
+.reveal-section.reveal-visible .stagger-child {
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
