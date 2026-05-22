@@ -111,7 +111,6 @@
   letter-spacing: -0.02em;
   line-height: 1.1;
   margin: 0 0 18px;
-  /* matches Skills heading gradient style */
   background: linear-gradient(
     90deg,
     var(--purple-light) 10%,
@@ -205,7 +204,7 @@
     translate 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---------- Scroll Reveal (matches Skills card-hidden / card-visible) ---------- */
+/* ---------- Scroll Reveal ---------- */
 .card-hidden {
   opacity: 0;
   translate: 0 40px;
@@ -252,6 +251,10 @@
 
   .project-card:hover .project-card__arrow svg {
     transform: translate(2px, -2px);
+  }
+
+  .project-card__title:hover {
+    background-size: 100% 2px;
   }
 }
 
@@ -301,13 +304,6 @@
   transform: translateY(100%);
   opacity: 0;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
-}
-
-@media (hover: none) {
-  .project-card__info {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .project-card__info-left {
@@ -368,13 +364,6 @@
     opacity 0.4s ease 0.1s;
 }
 
-@media (hover: none) {
-  .project-card__tech {
-    max-height: 80px;
-    opacity: 1;
-  }
-}
-
 .project-card__tech-tag {
   font-size: 0.7rem;
   font-weight: 500;
@@ -414,12 +403,42 @@
   transition: transform var(--transition);
 }
 
+/* ═══════════════════════════════════════
+   MOBILE — touch devices (hover: none)
+═══════════════════════════════════════ */
+@media (hover: none) {
+  /* Card becomes auto height so content isn't clipped */
+  .project-card {
+    height: auto;
+  }
+
+  /* Image sits as a normal block at fixed height */
+  .project-card__image-wrap {
+    position: relative;
+    height: 200px;
+  }
+
+  /* Info panel comes below the image, always visible */
+  .project-card__info {
+    position: relative;
+    transform: translateY(0);
+    opacity: 1;
+    background: var(--projects-card-bg);
+    padding: 16px 18px 20px;
+  }
+
+  /* Tech tags always visible */
+  .project-card__tech {
+    max-height: 80px;
+    opacity: 1;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 600px) {
   .projects-section   { padding: 70px 0 80px; }
   .projects-container { padding: 0 18px; }
   .projects-filters   { flex-wrap: wrap; gap: 4px; }
   .filter-btn         { padding: 8px 18px; font-size: 0.82rem; }
-  .project-card       { height: 300px; }
   .project-card__title { font-size: 1.15rem; }
 }
