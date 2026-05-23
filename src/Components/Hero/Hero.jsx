@@ -123,7 +123,7 @@ const Hero = () => {
           </div>
 
           <div className="hero__reveal hero__reveal--5">
-            <a href="/YuvasriResume.pdf" download className="hero__cv-btn">
+            <a href="/Yuvasri CV.pdf" download className="hero__cv-btn">
               <span className="hero__cv-btn-text">Download CV</span>
               <span className="hero__cv-btn-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

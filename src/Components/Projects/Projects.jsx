@@ -26,7 +26,7 @@ const projects = [
     description: "Developer portfolio with project showcases and blogs.",
     category: "Portfolio",
     image: "/ProjectImage/Portfolio.png",
-    link: "https://your-fashionhub-site.com",
+    link: "https://yuva-works.netlify.app/",
     techStack: "React.js",
   },
   {
@@ -68,7 +68,7 @@ const projects = [
   {
     id: 8,
     title: "Vehicle Mart",
-    description: "A small marketplace for selling vehicles with ease.",
+    description: "A small marketplace for selling vehicles with ease. Sample login -> Username : user, Password : 123",
     category: "E-commerce",
     image: "/ProjectImage/Vehiclemart.png",
     link: "https://vehiclemart-project.onrender.com/home/",
