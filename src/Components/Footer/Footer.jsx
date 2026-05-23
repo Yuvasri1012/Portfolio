@@ -21,9 +21,9 @@ const Footer = () => {
           <a href="mailto:yuvasrir120@gmail.com" className="btn btn-primary">
             Hire Me
           </a>
-          <button className="btn btn-outline" onClick={handleDownload}>
+          <a href="/Yuvasri CV.pdf" className="btn btn-outline" onClick={handleDownload}>
             Download Resume
-          </button>
+          </a>
         </div>
         <p className="footer-copyright">© 2026 Yuvasri. All rights reserved.</p>
       </div>
