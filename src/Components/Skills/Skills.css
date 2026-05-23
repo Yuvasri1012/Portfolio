@@ -21,7 +21,6 @@
   overflow: hidden;
 }
 
-/* subtle radial ambient */
 .skills-section::before {
   content: '';
   position: absolute;
@@ -52,10 +51,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.skills-header h2 span {
-  color: var(--purple-primary);
 }
 
 .skills-header p {
@@ -90,32 +85,43 @@
   gap: 16px;
   position: relative;
   cursor: default;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease,
-              transform 0.35s ease, background 0.35s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 
-  /* start hidden */
+  /* scroll reveal start state */
   opacity: 0;
   transform: translateY(40px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ✅ Slower, smoother reveal — 0.85s with a gentle ease */
+/* Scroll reveal */
 .skill-card.is-visible {
-  animation: cardReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes cardReveal {
-  to { opacity: 1; transform: translateY(0); }
+/* Stagger delays for reveal */
+.skill-card:nth-child(1) { transition-delay: 0ms; }
+.skill-card:nth-child(2) { transition-delay: 120ms; }
+.skill-card:nth-child(3) { transition-delay: 240ms; }
+.skill-card:nth-child(4) { transition-delay: 360ms; }
+.skill-card:nth-child(5) { transition-delay: 480ms; }
+.skill-card:nth-child(6) { transition-delay: 600ms; }
+
+/* ── Smooth zoom on hover — desktop only ── */
+@media (hover: hover) {
+  .skill-card.is-visible {
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
+
+  .skill-card.is-visible:hover {
+    transform: scale(1.09);
+  }
 }
 
-.skill-card.is-active,
-.skill-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-active);
-  box-shadow: 0 0 28px var(--purple-glow), 0 8px 32px rgba(0,0,0,0.5);
-  transform: translateY(-6px);
-}
-
-/* ── Icon wrapper ── */
+/* ── Icon wrapper — always full color ── */
 .skill-icon {
   width: 100%;
   height: 100%;
@@ -124,14 +130,6 @@
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.04);
-  filter: grayscale(1) brightness(0.55);
-  transition: filter 0.4s ease, background 0.3s ease;
-}
-
-.skill-card.is-active .skill-icon,
-.skill-card:hover .skill-icon {
-  filter: grayscale(0) brightness(1);
-  background: rgba(139,92,246,0.12);
 }
 
 /* ── SVG & IMG icons ── */
@@ -177,14 +175,6 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-
-/* ✅ Stagger delays — more spread out so each card feels distinct */
-.skill-card:nth-child(1) { animation-delay: 0ms; }
-.skill-card:nth-child(2) { animation-delay: 120ms; }
-.skill-card:nth-child(3) { animation-delay: 240ms; }
-.skill-card:nth-child(4) { animation-delay: 360ms; }
-.skill-card:nth-child(5) { animation-delay: 480ms; }
-.skill-card:nth-child(6) { animation-delay: 600ms; }
 
 /* ══════════════════════════════════════
    OTHER TOOLS
@@ -237,19 +227,35 @@
   align-items: center;
   gap: 14px;
   cursor: default;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  /* scroll reveal */
   opacity: 0;
   transform: translateY(24px);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ✅ Tool cards also slower */
+.tool-card:nth-child(1) { transition-delay: 0ms; }
+.tool-card:nth-child(2) { transition-delay: 100ms; }
+.tool-card:nth-child(3) { transition-delay: 200ms; }
+
 .tool-card.is-visible {
-  animation: cardReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.tool-card.is-active,
-.tool-card:hover {
-  transform: scale(1.07);
+/* ── Smooth zoom on hover — desktop only ── */
+@media (hover: hover) {
+  .tool-card.is-visible {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
+
+  .tool-card.is-visible:hover {
+    transform: scale(1.09);
+  }
 }
 
 /* ── Tool icon ── */
@@ -260,7 +266,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  filter: none;
 }
 
 /* ── Tool label ── */

@@ -1,27 +1,16 @@
 :root {
-  /* backgrounds */
   --bg-deep:        #0d0b14;
   --bg-card:        #13101e;
   --bg-card-hover:  #1a1628;
-
-  /* purple palette */
   --purple-primary: #8b5cf6;
   --purple-light:   #a78bfa;
   --purple-glow:    rgba(139, 92, 246, 0.25);
-
-  /* borders */
   --border-idle:    rgba(255, 255, 255, 0.06);
   --border-active:  rgba(139, 92, 246, 0.6);
-
-  /* text */
   --text-primary:   #f0ecff;
   --text-muted:     #7c7a8e;
-
-  /* misc */
   --fill-track:     rgba(255, 255, 255, 0.06);
   --fill-bar:       linear-gradient(90deg, #8b5cf6, #c084fc);
-
-  /* projects-specific aliases (mapped to shared tokens) */
   --projects-bg:            var(--bg-deep);
   --projects-surface:       #13101f;
   --projects-card-bg:       var(--bg-card);
@@ -34,12 +23,8 @@
   --projects-filter-bg:     var(--bg-card-hover);
   --projects-overlay-start: rgba(18, 10, 40, 0);
   --projects-overlay-end:   rgba(18, 10, 40, 0.97);
-
-  /* typography */
   --font-display: "Syne", sans-serif;
   --font-body:    "DM Sans", sans-serif;
-
-  /* misc */
   --radius-card: 18px;
   --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -52,7 +37,6 @@
   overflow: hidden;
 }
 
-/* Same ambient top-glow as Skills */
 .projects-section::before {
   content: '';
   position: absolute;
@@ -66,7 +50,6 @@
   z-index: 0;
 }
 
-/* Ambient blobs */
 .projects-bg-blob {
   position: absolute;
   border-radius: 50%;
@@ -154,11 +137,15 @@
   color: var(--projects-muted);
   border-radius: 50px;
   cursor: pointer;
+  /* ✅ Mobile: instant tap response */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: all var(--transition);
   white-space: nowrap;
 }
 
-.filter-btn:hover {
+.filter-btn:hover,
+.filter-btn:active {
   color: var(--projects-text);
   background: rgba(139, 92, 246, 0.12);
 }
@@ -196,6 +183,9 @@
   border: 1px solid var(--projects-border);
   cursor: pointer;
   height: 360px;
+  /* ✅ Mobile: instant tap */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -215,7 +205,7 @@
   translate: 0 0;
 }
 
-/* ---------- Hover — mouse devices only ---------- */
+/* ---------- Hover — desktop mouse only ---------- */
 @media (hover: hover) {
   .project-card:hover {
     transform: translateY(-6px);
@@ -258,7 +248,42 @@
   }
 }
 
-/* Image */
+/* ✅ Mobile tap active state — card-tapped class */
+.card-tapped {
+  border-color: var(--border-active);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 28px var(--purple-glow),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
+  animation: none !important;
+  opacity: 1 !important;
+  translate: 0 0 !important;
+}
+
+.card-tapped .project-card__image {
+  transform: scale(1.06);
+  filter: brightness(0.55) saturate(1);
+}
+
+.card-tapped .project-card__info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-tapped .project-card__tech {
+  max-height: 80px;
+  opacity: 1;
+}
+
+.card-tapped .project-card__arrow {
+  background: var(--projects-accent);
+  border-color: var(--projects-accent);
+  color: #fff;
+  box-shadow: 0 0 20px var(--projects-accent-glow);
+  transform: scale(1.1);
+}
+
+/* ---------- Image ---------- */
 .project-card__image-wrap {
   position: absolute;
   inset: 0;
@@ -272,7 +297,6 @@
   filter: brightness(0.75) saturate(0.9);
 }
 
-/* Gradient overlay on image */
 .project-card__image-overlay {
   position: absolute;
   inset: 0;
@@ -284,7 +308,7 @@
   );
 }
 
-/* Info overlay at the bottom */
+/* ---------- Info Panel ---------- */
 .project-card__info {
   position: absolute;
   bottom: 0;
@@ -310,7 +334,6 @@
   flex: 1;
 }
 
-/* Tag */
 .project-card__tag {
   display: inline-block;
   font-size: 0.72rem;
@@ -324,7 +347,6 @@
   margin-bottom: 10px;
 }
 
-/* Title */
 .project-card__title {
   font-size: 2.35rem;
   font-weight: 700;
@@ -341,7 +363,6 @@
   transition: background-size 0.4s ease, color 0.3s ease;
 }
 
-/* Description */
 .project-card__desc {
   font-size: 0.875rem;
   color: rgba(200, 190, 220, 0.8);
@@ -376,7 +397,7 @@
   white-space: nowrap;
 }
 
-/* Arrow button */
+/* ---------- Arrow button ---------- */
 .project-card__arrow {
   flex-shrink: 0;
   width: 44px;
@@ -405,20 +426,19 @@
 
 /* ═══════════════════════════════════════
    MOBILE — touch devices (hover: none)
+   Card is always expanded (no tap needed to reveal)
 ═══════════════════════════════════════ */
 @media (hover: none) {
-  /* Card becomes auto height so content isn't clipped */
   .project-card {
     height: auto;
   }
 
-  /* Image sits as a normal block at fixed height */
   .project-card__image-wrap {
     position: relative;
     height: 200px;
   }
 
-  /* Info panel comes below the image, always visible */
+  /* Info always visible on mobile */
   .project-card__info {
     position: relative;
     transform: translateY(0);
@@ -427,7 +447,6 @@
     padding: 16px 18px 20px;
   }
 
-  /* Tech tags always visible */
   .project-card__tech {
     max-height: 80px;
     opacity: 1;

@@ -28,72 +28,31 @@ const RenderIcon = () => (
 
 /* ── Skill data ── */
 const SKILLS = [
-  {
-    label: "HTML",
-    percent: 92,
-    icon: <img src="/SkillsIcon/HTML.png" alt="HTML" />,
-  },
-  {
-    label: "CSS",
-    percent: 90,
-    icon: <img src="/SkillsIcon/CSS.png" alt="CSS" />,
-  },
-  {
-    label: "JavaScript",
-    percent: 87,
-    icon: <img src="/SkillsIcon/JS.png" alt="JavaScript" />,
-  },
-  {
-    label: "React",
-    percent: 82,
-    icon: <img src="/SkillsIcon/React.png" alt="React" />,
-  },
-  {
-    label: "Python",
-    percent: 80,
-    icon: <img src="/SkillsIcon/Python.png" alt="Python" />,
-  },
-  {
-    label: "Django",
-    percent: 80,
-    icon: <img src="/SkillsIcon/Django.png" alt="Django" />,
-  },
+  { label: "HTML",       percent: 92, icon: <img src="/SkillsIcon/HTML.png"   alt="HTML" /> },
+  { label: "CSS",        percent: 90, icon: <img src="/SkillsIcon/CSS.png"    alt="CSS" /> },
+  { label: "JavaScript", percent: 87, icon: <img src="/SkillsIcon/JS.png"     alt="JavaScript" /> },
+  { label: "React",      percent: 82, icon: <img src="/SkillsIcon/React.png"  alt="React" /> },
+  { label: "Python",     percent: 80, icon: <img src="/SkillsIcon/Python.png" alt="Python" /> },
+  { label: "Django",     percent: 80, icon: <img src="/SkillsIcon/Django.png" alt="Django" /> },
 ];
 
 /* ── Other Tools data ── */
 const OTHER_TOOLS = [
-  {
-    label: "Postman",
-    icon: <PostmanIcon />,
-  },
-  {
-    label: "Render",
-    icon: <RenderIcon />,
-  },
+  { label: "Postman",    icon: <PostmanIcon /> },
+  { label: "Render",     icon: <RenderIcon /> },
   {
     label: "Git & GitHub",
-    icon: (
-      <GitHubIcon
-        sx={{
-          width: "100%",
-          height: "100%",
-          color: "inherit",
-        }}
-      />
-    ),
+    icon: <GitHubIcon sx={{ width: "100%", height: "100%", color: "inherit" }} />,
   },
 ];
 
 /* ── Component ── */
 export default function Skills() {
   const sectionRef = useRef(null);
-  const cardRefs = useRef([]);
   const [revealed, setRevealed] = useState(false);
   const [percents, setPercents] = useState(SKILLS.map(() => 0));
-  const [activeIdx, setActiveIdx] = useState(null); // ✅ null — default-ஆ எந்த card-உம் active இல்ல
-  const [activeToolIdx, setActiveToolIdx] = useState(null);
 
-  /* Intersection Observer — trigger once when section enters viewport */
+  /* Trigger once when section enters viewport */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -111,19 +70,18 @@ export default function Skills() {
   /* Animate percent counters when revealed */
   useEffect(() => {
     if (!revealed) return;
-
     SKILLS.forEach((skill, i) => {
-      const delay = i * 120;
+      const delay    = i * 120;
       const duration = 1200;
-      const start = performance.now() + delay;
-      const target = skill.percent;
+      const start    = performance.now() + delay;
+      const target   = skill.percent;
 
       const step = (now) => {
-        const elapsed = now - start;
+        const elapsed  = now - start;
         if (elapsed < 0) { requestAnimationFrame(step); return; }
         const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(eased * target);
+        const eased    = 1 - Math.pow(1 - progress, 3);
+        const value    = Math.round(eased * target);
         setPercents((prev) => {
           const next = [...prev];
           next[i] = value;
@@ -131,13 +89,12 @@ export default function Skills() {
         });
         if (progress < 1) requestAnimationFrame(step);
       };
-
       requestAnimationFrame(step);
     });
   }, [revealed]);
 
   return (
-    <section className="skills-section" ref={sectionRef} id="skills">
+    <section className="skills-section" ref={sectionRef}>
       {/* Header */}
       <div className="skills-header">
         <h2>My skills</h2>
@@ -152,12 +109,7 @@ export default function Skills() {
         {SKILLS.map((skill, i) => (
           <div
             key={skill.label}
-            ref={(el) => (cardRefs.current[i] = el)}
-            className={`skill-card ${revealed ? "is-visible" : ""} ${
-              activeIdx === i ? "is-active" : ""
-            }`}
-            onMouseEnter={() => setActiveIdx(i)}
-            onMouseLeave={() => setActiveIdx(null)} // ✅ null — mouse leave-ல் எந்த card-உம் active இல்ல
+            className={`skill-card ${revealed ? "is-visible" : ""}`}
           >
             <div className="skill-icon">{skill.icon}</div>
             <div className="skill-percent">{percents[i]}%</div>
@@ -185,12 +137,8 @@ export default function Skills() {
           {OTHER_TOOLS.map((tool, i) => (
             <div
               key={tool.label}
-              className={`tool-card ${revealed ? "is-visible" : ""} ${
-                activeToolIdx === i ? "is-active" : ""
-              }`}
-              style={{ animationDelay: `${i * 100}ms` }}
-              onMouseEnter={() => setActiveToolIdx(i)}
-              onMouseLeave={() => setActiveToolIdx(null)}
+              className={`tool-card ${revealed ? "is-visible" : ""}`}
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="tool-icon">{tool.icon}</div>
               <div className="tool-label">{tool.label}</div>

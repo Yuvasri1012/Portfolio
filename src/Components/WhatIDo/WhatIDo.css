@@ -93,11 +93,12 @@
   cursor: default;
 }
 
-.whatido__item:hover .whatido__desc {
+.whatido__item:hover .whatido__desc,
+.whatido__item--active .whatido__desc {
   color: rgba(255, 255, 255, 0.95);
 }
 
-.whatido__item:hover {
+.whatido__item:hover{
   background: linear-gradient(
     135deg,
     #6d28d9 0%,
@@ -107,7 +108,8 @@
   border-color: transparent;
 }
 
-.whatido__item:hover .whatido__number {
+.whatido__item:hover .whatido__number,
+.whatido__item--active .whatido__number {
   color: #ffffff;
 }
 
@@ -120,7 +122,8 @@
   transition: color 0.3s ease;
 }
 
-.whatido__item:hover .whatido__arrow {
+.whatido__item:hover .whatido__arrow,
+.whatido__item--active .whatido__arrow {
   color: #ffffff;
   /* transform: rotate(-45deg); */
 }
@@ -140,7 +143,8 @@
   transition: transform 0.1s ease;
 }
 
-.whatido__item:hover .whatido__arrow svg {
+.whatido__item:hover .whatido__arrow svg,
+.whatido__item--active .whatido__arrow svg {
   transform: rotate(-45deg);
 }
 

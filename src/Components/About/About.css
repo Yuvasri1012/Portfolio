@@ -39,9 +39,9 @@
   transition: all 0.25s ease;
 }
 
-.tab-btn:hover {
+/* .tab-btn:hover {
   background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(147, 51, 234, 0.15));
-}
+} */
 
 .tab-btn.active {
   background: linear-gradient(135deg, #7c3aed, #9333ea);
@@ -116,10 +116,10 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.edu-card:hover {
+/* .edu-card:hover {
   border-color: #7c3aed;
   box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
-}
+} */
 
 .edu-title {
   font-size: 20px;
@@ -206,4 +206,33 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (hover: hover) {
+  .tab-btn:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.15),
+      rgba(147, 51, 234, 0.15)
+    );
+  }
+
+  .edu-card:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+  }
+}
+
+/* Mobile: active state for touch */
+.tab-btn:active {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.15),
+    rgba(147, 51, 234, 0.15)
+  );
+}
+
+.edu-card:active {
+  border-color: #7c3aed;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
 }

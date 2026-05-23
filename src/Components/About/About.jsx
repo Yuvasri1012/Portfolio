@@ -63,7 +63,7 @@ const About = () => {
   ];
 
   return (
-    <section className="about reveal-section" id="about" ref={sectionRef}>
+    <section className="about reveal-section" ref={sectionRef}>
       <h2 className="about-title">About Me</h2>
 
       <div className="about-tabs">

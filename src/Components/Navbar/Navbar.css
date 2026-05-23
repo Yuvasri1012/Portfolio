@@ -180,14 +180,16 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
-  z-index: 900;
+  z-index: 998;
   opacity: 0;
   transition: opacity 0.3s ease;
   backdrop-filter: blur(3px);
+  pointer-events: none;
 }
 
 .mobile-overlay.show {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* ─── MOBILE DRAWER MENU ──────────────────────────────────── */
@@ -201,7 +203,7 @@
   height: calc(100vh - 90px);
   background: rgba(15, 5, 30, 0.97);
   backdrop-filter: blur(20px);
-  z-index: 999;
+  z-index: 1005;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -256,7 +258,8 @@
   border-left: 3px solid transparent;
 }
 
-.mobile-menu ul li a:hover {
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a:active {
   background: rgba(168, 85, 247, 0.12);
   color: #a855f7;
   border-left-color: #a855f7;
@@ -307,6 +310,7 @@
     gap: 0;
     padding: 0 16px;
     height: 70px;
+    z-index:1010;
   }
 
   .logo {
@@ -326,6 +330,7 @@
   /* Show hamburger */
   .hamburger {
     display: flex;
+    z-index:1015;
   }
 
   /* Show mobile drawer */

@@ -65,7 +65,7 @@ const projects = [
     link: "https://expense-tracker-ektl.onrender.com",
     techStack: "Django, MySQL",
   },
-   {
+  {
     id: 8,
     title: "Vehicle Mart",
     description: "A small marketplace for selling vehicles with ease.",
@@ -80,8 +80,9 @@ const filters = ["All", "Portfolio", "E-commerce", "Tasks"];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
-  // Track which project IDs have already been revealed (persists across filter changes)
   const [revealedIds, setRevealedIds] = useState(new Set());
+  // ✅ Mobile: track which card is tapped/active
+  const [activeCardId, setActiveCardId] = useState(null);
   const cardRefs = useRef([]);
 
   const filtered =
@@ -96,7 +97,6 @@ export default function Projects() {
           if (entry.isIntersecting) {
             const id = Number(entry.target.dataset.id);
             setRevealedIds((prev) => new Set([...prev, id]));
-            // Unobserve immediately so animation never re-triggers
             observer.unobserve(entry.target);
           }
         });
@@ -111,8 +111,31 @@ export default function Projects() {
     return () => observer.disconnect();
   }, [filtered]);
 
+  // ✅ Mobile tap: toggle card active state
+  const handleCardTap = (e, projectId, projectLink) => {
+    // If card is not yet active — activate it (show info)
+    if (activeCardId !== projectId) {
+      e.preventDefault(); // prevent link navigation on first tap
+      setActiveCardId(projectId);
+      return;
+    }
+    // If already active — second tap navigates to link (handled by <a> tag naturally)
+    setActiveCardId(null);
+  };
+
+  // ✅ Close active card when tapping outside
+  useEffect(() => {
+    const handleOutsideTouch = (e) => {
+      if (!e.target.closest(".project-card")) {
+        setActiveCardId(null);
+      }
+    };
+    document.addEventListener("touchstart", handleOutsideTouch);
+    return () => document.removeEventListener("touchstart", handleOutsideTouch);
+  }, []);
+
   return (
-    <section className="projects-section" id="projects">
+    <section className="projects-section">
       <div className="projects-bg-blob blob-1" />
       <div className="projects-bg-blob blob-2" />
 
@@ -125,12 +148,16 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* ✅ Filter buttons with touch-action */}
         <div className="projects-filters">
           {filters.map((filter) => (
             <button
               key={filter}
               className={`filter-btn ${activeFilter === filter ? "filter-btn--active" : ""}`}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => {
+                setActiveFilter(filter);
+                setActiveCardId(null); // reset active card on filter change
+              }}
             >
               {filter}
             </button>
@@ -143,8 +170,12 @@ export default function Projects() {
               key={project.id}
               data-id={project.id}
               ref={(el) => (cardRefs.current[index] = el)}
-              className={`project-card ${revealedIds.has(project.id) ? "card-visible" : "card-hidden"}`}
+              className={`project-card ${revealedIds.has(project.id) ? "card-visible" : "card-hidden"} ${
+                activeCardId === project.id ? "card-tapped" : ""
+              }`}
               style={{ transitionDelay: `${index * 0.12}s` }}
+              // ✅ Mobile tap handler
+              onTouchEnd={(e) => handleCardTap(e, project.id, project.link)}
             >
               <div className="project-card__image-wrap">
                 <img

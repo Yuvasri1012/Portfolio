@@ -447,10 +447,15 @@
    RESPONSIVE
    ============================================= */
 @media (max-width: 900px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .hero__container {
     flex-direction: column-reverse;
     align-items: center;
-    padding: 60px 24px;
+    padding: 100px 24px 60px;
     text-align: center;
   }
 

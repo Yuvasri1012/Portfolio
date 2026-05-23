@@ -13,24 +13,31 @@ function App() {
   return (
     <>
       <Navbar />
+
       <section id="home">
         <Hero />
       </section>
-        <WhatIDo />
-        <section id="projects">
-      <Projects />
-      </section>
-      <section id="skills">
-        <Skills/>
-      </section>
-      <Scrolltotop/>
-      <section id="contact">
-        <Contact/>
-      </section>
+
+      <WhatIDo />
+
       <section id="about">
-        <About/>
+        <About />
       </section>
-      <Footer/>
+
+      <section id="skills">
+        <Skills />
+      </section>
+
+      <section id="projects">
+        <Projects />
+      </section>
+
+      <section id="contact">
+        <Contact />
+      </section>
+
+      <Footer />
+      <Scrolltotop />
     </>
   )
 }

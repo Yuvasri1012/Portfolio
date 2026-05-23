@@ -69,7 +69,7 @@ const WhatIDo = () => {
               className={`whatido__item whatido__fade whatido__fade--${index + 1} ${
                 activeIndex === index ? "whatido__item--active" : ""
               }`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => setActiveIndex(activeIndex === index ? null : index)}
             >
               <span className="whatido__number">{service.number}</span>
               <div className="whatido__info">
