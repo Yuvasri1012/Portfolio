@@ -5,9 +5,12 @@ const Footer = () => {
   const handleDownload = () => {
     // Replace with your actual resume file path
     const link = document.createElement("a");
-    link.href = "/YuvasriResume.pdf";
-    link.download = "YuvasriResume.pdf";
+    link.href = "/Yuvasri CV.pdf";
+    link.download = "Yuvasri CV.pdf";
     link.click();
+    document.body.appendChild(link); 
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
