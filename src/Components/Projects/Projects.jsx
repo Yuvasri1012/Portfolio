@@ -71,7 +71,7 @@ const projects = [
     description: "A small marketplace for selling vehicles with ease. Sample login -> Username : user, Password : 123",
     category: "E-commerce",
     image: "/ProjectImage/Vehiclemart.png",
-    link: "https://vehiclemart-project.onrender.com/home/",
+    link: "https://vehiclemart-project.onrender.com/",
     techStack: "Django",
   },
 ];
